@@ -25,12 +25,12 @@ const CardsContainer = styled.div`
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <Banner
+    {/* <Banner
       title="KL Inside Guide"
       subtitle="We do cool things, wow"
       fluid={data.bannerImage1.childImageSharp.fluid}
       brightness={70}
-    />
+    /> */}
 
     <StyledIndex>
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
@@ -97,7 +97,7 @@ const IndexPage = ({ data }) => (
       <br />
     </StyledIndex>
 
-    <Newsletter />
+    {/* <Newsletter /> */}
   </Layout>
 )
 
