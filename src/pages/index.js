@@ -48,38 +48,37 @@ const IndexPage = ({ data }) => (
       </Heading>
       <br />
 
-      <CardsContainer mb={[5, 6]}>
-        <h1>test inside cards container</h1>
-        {/* <Card
-          category="food"
-          title="Tanner's Pizza Bangsar"
-          fluid={data.cardImage1.childImageSharp.fluid}
-        />
+      {/* <CardsContainer mb={[5, 6]}> */}
+      <Card
+        category="food"
+        title="Tanner's Pizza Bangsar"
+        fluid={data.cardImage1.childImageSharp.fluid}
+      />
 
-        <Card
-          category="Festivals"
-          title="Urbanscapes X Mr. D.I.Y. fest"
-          fluid={data.cardImage2.childImageSharp.fluid}
-        />
+      <Card
+        category="Festivals"
+        title="Urbanscapes X Mr. D.I.Y. fest"
+        fluid={data.cardImage2.childImageSharp.fluid}
+      />
 
-        <Card
-          category="Music"
-          title="+2b Retirement Show"
-          fluid={data.cardImage3.childImageSharp.fluid}
-        />
+      <Card
+        category="Music"
+        title="+2b Retirement Show"
+        fluid={data.cardImage3.childImageSharp.fluid}
+      />
 
-        <Card
-          category="Nightlife"
-          title="Secret Bars of Jalan Tengirri"
-          fluid={data.cardImage4.childImageSharp.fluid}
-        />
+      <Card
+        category="Nightlife"
+        title="Secret Bars of Jalan Tengirri"
+        fluid={data.cardImage4.childImageSharp.fluid}
+      />
 
-        <Card
-          category="Food"
-          title="Baba Low's: Best Nyonya in KL, furriel"
-          fluid={data.cardImage5.childImageSharp.fluid}
-        /> */}
-      </CardsContainer>
+      <Card
+        category="Food"
+        title="Baba Low's: Best Nyonya in KL, furriel"
+        fluid={data.cardImage5.childImageSharp.fluid}
+      />
+      {/* </CardsContainer> */}
 
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
         Our Service

@@ -17,7 +17,6 @@ const StyledBanner = styled.div`
   }
 `
 // Todo: refactor to StaticQuery
-
 const Banner = ({ title, subtitle, fluid, brightness }) => (
   <StyledBanner>
     <Img
