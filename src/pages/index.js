@@ -34,7 +34,7 @@ const Styled = styled.div`
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
   }
 `
 
