@@ -26,12 +26,14 @@ const Styled = styled.div`
   main {
     display: flex;
     flex-direction: column;
-    /* padding: 0 1em; */
+    padding-left: 1em;
+    padding-right: 1em;
   }
 
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-row-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 `
 
