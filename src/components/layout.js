@@ -5,7 +5,6 @@ import { Grommet } from 'grommet'
 
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { BlackTie } from 'styled-icons/fa-brands'
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Karla:100,400,700');
@@ -25,28 +24,12 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-const hpeTheme = {
-  button: {
-    border: {
-      radius: '4px',
-    },
-    colors: {
-      accent: '#ff8d6d',
-      primary: 'blue',
-      secondary: 'rgba(51,51,51,0.6)',
-    },
-    extend: 'letter-spacing: 0.04167em;',
-  },
-}
-
 const Layout = ({ children }) => (
   <>
-    <Grommet theme={hpeTheme}>
-      <GlobalStyles />
-      <Nav />
-      {children}
-      <Footer />
-    </Grommet>
+    <GlobalStyles />
+    <Nav />
+    {children}
+    <Footer />
   </>
 )
 
