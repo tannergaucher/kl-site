@@ -7,7 +7,7 @@ const Styled = styled.div`
   display: grid;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
-  border-radius: 2px;
+  border-radius: 4px;
 
   .card-category {
     text-transform: uppercase;
