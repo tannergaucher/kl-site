@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
-import { Grommet } from 'grommet'
 
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
