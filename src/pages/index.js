@@ -49,7 +49,7 @@ const IndexPage = ({ data }) => (
       </Heading>
       <br />
 
-      <CardsContainer mb={[5, 6]}>
+      {/* <CardsContainer mb={[5, 6]}>
         <Card
           category="food"
           title="Tanner's Pizza Bangsar"
@@ -79,7 +79,7 @@ const IndexPage = ({ data }) => (
           title="Baba Low's: Best Nyonya in KL, furriel"
           fluid={data.cardImage5.childImageSharp.fluid}
         />
-      </CardsContainer>
+      </CardsContainer> */}
 
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
         Our Service
