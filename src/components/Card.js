@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 const Styled = styled.div`
+  min-width: 200px;
   display: grid;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
@@ -12,12 +13,10 @@ const Styled = styled.div`
     text-transform: uppercase;
     font-weight: lighter;
     letter-spacing: 1.4px;
-    margin: 1em;
   }
 
   .card-title {
     font-weight: lighter;
-    margin: 0.5em;
   }
 
   :hover {
