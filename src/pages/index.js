@@ -19,18 +19,17 @@ const StyledIndex = styled.div`
 const CardsContainer = styled.div`
   ${space};
   display: grid;
-  grid-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 `
 
 const IndexPage = ({ data }) => (
   <Layout>
-    {/* <Banner
+    <Banner
       title="KL Inside Guide"
       subtitle="We do cool things, wow"
       fluid={data.bannerImage1.childImageSharp.fluid}
       brightness={70}
-    /> */}
+    />
 
     <StyledIndex>
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
@@ -49,7 +48,7 @@ const IndexPage = ({ data }) => (
       </Heading>
       <br />
 
-      {/* <CardsContainer mb={[5, 6]}>
+      <CardsContainer mb={[5, 6]}>
         <Card
           category="food"
           title="Tanner's Pizza Bangsar"
@@ -79,7 +78,7 @@ const IndexPage = ({ data }) => (
           title="Baba Low's: Best Nyonya in KL, furriel"
           fluid={data.cardImage5.childImageSharp.fluid}
         />
-      </CardsContainer> */}
+      </CardsContainer>
 
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
         Our Service
@@ -97,7 +96,7 @@ const IndexPage = ({ data }) => (
       <br />
     </StyledIndex>
 
-    {/* <Newsletter /> */}
+    <Newsletter />
   </Layout>
 )
 
