@@ -26,7 +26,7 @@ const Styled = styled.div`
   main {
     display: flex;
     flex-direction: column;
-    /* padding: 0 1em; */
+    padding: 0 1em;
   }
 
   .cards-container {
