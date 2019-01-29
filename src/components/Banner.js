@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Button } from 'rebass'
+import { Heading } from 'rebass'
 import Img from 'gatsby-image'
 
 const StyledBanner = styled.div`
@@ -16,6 +16,7 @@ const StyledBanner = styled.div`
     text-shadow: black 5px 5px 15px;
   }
 `
+// Todo: refactor to StaticQuery
 
 const Banner = ({ title, subtitle, fluid, brightness }) => (
   <StyledBanner>

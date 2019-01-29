@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
-import { Heading, Box } from 'rebass'
+import { Heading } from 'rebass'
 import { space } from 'styled-system'
 
 import Banner from '../components/Banner'

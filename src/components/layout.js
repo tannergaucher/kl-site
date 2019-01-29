@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
 
-import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 const GlobalStyles = createGlobalStyle`
@@ -26,7 +25,6 @@ const GlobalStyles = createGlobalStyle`
 const Layout = ({ children }) => (
   <>
     <GlobalStyles />
-    <Nav />
     {children}
     <Footer />
   </>
