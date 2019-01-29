@@ -49,7 +49,8 @@ const IndexPage = ({ data }) => (
       <br />
 
       <CardsContainer mb={[5, 6]}>
-        <Card
+        <h1>test inside cards container</h1>
+        {/* <Card
           category="food"
           title="Tanner's Pizza Bangsar"
           fluid={data.cardImage1.childImageSharp.fluid}
@@ -77,7 +78,7 @@ const IndexPage = ({ data }) => (
           category="Food"
           title="Baba Low's: Best Nyonya in KL, furriel"
           fluid={data.cardImage5.childImageSharp.fluid}
-        />
+        /> */}
       </CardsContainer>
 
       <Heading fontSize={[4, 5]} mt={[5, 6, 7]} textAlign="center">
