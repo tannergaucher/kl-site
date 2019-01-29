@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import Footer from '../components/Footer'
+import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Karla:100,400,700');
@@ -24,11 +25,13 @@ const GlobalStyles = createGlobalStyle`
 `
 
 const Layout = ({ children }) => (
-  <>
-    <GlobalStyles />
-    {children}
-    <Footer />
-  </>
+  <ThemeProvider theme={theme}>
+    <>
+      <GlobalStyles />
+      {children}
+      <Footer />
+    </>
+  </ThemeProvider>
 )
 
 Layout.propTypes = {
