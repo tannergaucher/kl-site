@@ -8,6 +8,8 @@ import Layout from '../components/layout'
 import Card from '../components/Card'
 import NewsletterForm from '../components/NewsletterForm'
 
+import Link from '../components/styles/Link'
+
 const Styled = styled.div`
   .banner {
     position: relative;
@@ -23,14 +25,9 @@ const Styled = styled.div`
     color: white;
   }
 
-  main {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-
   .description,
   .product {
-    height: 70vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,6 +49,7 @@ const Styled = styled.div`
 
 const IndexPage = ({ data }) => {
   const {
+    slug,
     heroHeader,
     heroSubheader,
     heroImage,
@@ -91,13 +89,15 @@ const IndexPage = ({ data }) => {
 
           <section className="index-cards">
             {edges.map(post => {
-              const { title, category, cardImage } = post.node
+              const { title, category, cardImage, slug } = post.node
               return (
-                <Card
-                  title={title}
-                  category={category}
-                  fluid={cardImage.fluid}
-                />
+                <Link to={`/guide/${slug}`} key={slug}>
+                  <Card
+                    title={title}
+                    category={category}
+                    fluid={cardImage.fluid}
+                  />
+                </Link>
               )
             })}
           </section>
@@ -156,6 +156,7 @@ export const query = graphql`
       edges {
         node {
           title
+          slug
           category
           cardImage {
             fluid(maxWidth: 800) {

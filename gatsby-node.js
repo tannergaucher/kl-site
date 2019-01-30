@@ -1,7 +1,36 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
-// You can delete this file if you're not using it
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allContentfulPost {
+          edges {
+            node {
+              title
+              slug
+            }
+          }
+        }
+      }
+    `)
+      .then(result => {
+        const posts = result.data.allContentfulPost.edges
+        posts.forEach(post => {
+          createPage({
+            path: `/guide/${post.node.slug}`,
+            component: path.resolve(`./src/templates/post.js`),
+            // gets passed in as variable in graphql page query
+            context: {
+              // todo: some kind of validation to make sure it's a slug
+              slug: post.node.slug,
+            },
+          })
+        })
+        resolve()
+      })
+      .catch(reject => console.log(error(reject)))
+  })
+}

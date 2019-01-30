@@ -6,6 +6,7 @@ const NavLink = styled(Link)`
   transition: ease-in-out 0.2s;
   letter-spacing: 1.1px;
   font-weight: lighter;
+  text-transform: ${props => (props.uppercase ? 'uppercase' : '')};
 
   &:hover {
     color: white;

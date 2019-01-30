@@ -26,30 +26,33 @@ const Styled = styled.footer`
 
 const Footer = () => (
   <Styled>
-    <NavLink>
+    <NavLink to="/">
       <Instagram size={25} />
     </NavLink>
-    <NavLink>
+    <NavLink to="/">
       <Facebook size={25} />
     </NavLink>
-    <NavLink>
+    <NavLink to="/">
       <Twitter size={25} />
     </NavLink>
-    <NavLink>
+    <NavLink to="/">
       <MessageCircle size={25} />
     </NavLink>
 
-    <NavLink>
-      <h5>CONTACT</h5>
+    <NavLink to="/contact" uppercase="true">
+      <h5>Contact</h5>
     </NavLink>
-    <NavLink>
-      <h5>ABOUT</h5>
+    <NavLink to="/about" uppercase="true">
+      <h5>About</h5>
     </NavLink>
-    <NavLink>
-      <h5>FAQ</h5>
+    <NavLink to="/faq" uppercase="true">
+      <h5>F.A.Q.</h5>
     </NavLink>
-    <NavLink>
-      <h5>FRIENDS</h5>
+    <NavLink to="/friends" uppercase="true">
+      <h5>Friends</h5>
+    </NavLink>
+    <NavLink to="/" uppercase="true">
+      <h5>KL Inside Guide</h5>
     </NavLink>
 
     {/* <div className="footer-legal">
