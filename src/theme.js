@@ -1,5 +1,5 @@
 const theme = {
-  spacing: '.8em',
+  spacing: '1em',
   radius: '4px',
 }
 

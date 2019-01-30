@@ -6,8 +6,7 @@ import { Mail } from 'styled-icons/feather/Mail'
 
 import Layout from '../components/layout'
 import Card from '../components/Card'
-import Form from '../components/styles/Form'
-import Button from '../components/styles/Button'
+import NewsletterForm from '../components/NewsletterForm'
 
 const Styled = styled.div`
   .banner {
@@ -21,159 +20,148 @@ const Styled = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: black 5px 5px 15px;
+    color: white;
   }
 
   main {
-    display: flex;
-    flex-direction: column;
     padding-left: 1em;
     padding-right: 1em;
   }
 
-  .cards-container {
+  .description,
+  .product {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .index-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 1rem;
   }
+
+  .newsletter {
+    h3 {
+      text-transform: uppercase;
+      font-weight: lighter;
+    }
+  }
 `
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <Styled>
-      <div className="banner">
-        <Img
-          fluid={data.bannerImage1.childImageSharp.fluid}
-          style={{ height: '100vh', filter: 'brightness(70%)' }}
-        />
-        <div className="banner-text">
-          <h1>KL Inside Guide</h1>
-          <h3>We do cool things, wow</h3>
-        </div>
-      </div>
+const IndexPage = ({ data }) => {
+  const {
+    heroHeader,
+    heroSubheader,
+    heroImage,
+    descriptionHeader,
+    descriptionSubheader,
+    descriptionText,
+    productHeader,
+    productSubheader,
+    productText,
+    newsletterHeader,
+    newsletterImage,
+  } = data.homepage
 
-      <main>
-        <section>
-          <h3>Insider's Guide</h3>
-          <h5>Find out what's happening</h5>
-          <h5>👩‍🎨 🍲 🍾 👨‍🎤</h5>
-          <br />
-        </section>
+  const { edges } = data.indexCards
 
-        <section>
-          <div className="cards-container">
-            <Card
-              category="food"
-              title="Tanner's Pizza Bangsar"
-              fluid={data.cardImage1.childImageSharp.fluid}
-            />
+  return (
+    <Layout>
+      <Styled>
+        <header className="banner">
+          <Img
+            fluid={heroImage.fluid}
+            style={{ height: '100vh', filter: 'brightness(70%)' }}
+          />
+          <div className="banner-text">
+            <h1>{heroHeader}</h1>
+            <h3>{heroSubheader}</h3>
+          </div>
+        </header>
 
-            <Card
-              category="Festivals"
-              title="Urbanscapes X Mr. D.I.Y. fest"
-              fluid={data.cardImage2.childImageSharp.fluid}
-            />
+        <main>
+          <section className="description">
+            <h3>{descriptionHeader}</h3>
+            <h5>{descriptionSubheader}</h5>
+            <p>{descriptionText}</p>
+            <br />
+          </section>
 
-            <Card
-              category="Music"
-              title="+2b Retirement Show"
-              fluid={data.cardImage3.childImageSharp.fluid}
-            />
+          <section className="index-cards">
+            {edges.map(post => {
+              const { title, category, cardImage } = post.node
+              return (
+                <Card
+                  title={title}
+                  category={category}
+                  fluid={cardImage.fluid}
+                />
+              )
+            })}
+          </section>
 
-            <Card
-              category="Nightlife"
-              title="Secret Bars of Jalan Tengirri"
-              fluid={data.cardImage4.childImageSharp.fluid}
-            />
+          <section className="product">
+            <h3>{productHeader}</h3>
+            <h5>{productSubheader}</h5>
+            <p>{productText}</p>
+            <br />
+          </section>
+        </main>
 
-            <Card
-              category="Food"
-              title="Baba Low's: Best Nyonya in KL, furriel"
-              fluid={data.cardImage5.childImageSharp.fluid}
-            />
+        <section className="newsletter banner">
+          <Img
+            style={{ height: '50vh', filter: 'brightness(95%)' }}
+            fluid={newsletterImage.fluid}
+          />
+          <div className="banner-text">
+            <Mail size={25} />
+            <h3>{newsletterHeader}</h3>
+            <NewsletterForm />
           </div>
         </section>
-
-        <section>
-          <h3>Our Service</h3>
-          <h5>Some Product Info Here</h5>
-          <h5>👩‍🎨 🍲 🍾 👨‍🎤</h5>
-          <br />
-        </section>
-      </main>
-
-      <div className="banner">
-        <Img
-          style={{ height: '50vh', filter: 'brightness(50%)' }}
-          fluid={data.bannerImage2.childImageSharp.fluid}
-        />
-        <div className="banner-text">
-          <Mail size={25} />
-          <h3>Stay In The Loop</h3>
-          <Form mb={[5]} onSubmit={e => e.preventDefault()}>
-            <input placeholder="Email Address" type="email" name="email" />
-            <Button type="submit">SUBMIT</Button>
-          </Form>
-        </div>
-      </div>
-    </Styled>
-  </Layout>
-)
+      </Styled>
+    </Layout>
+  )
+}
 
 export default IndexPage
 
 export const query = graphql`
   query {
-    bannerImage1: file(relativePath: { eq: "towers.jpg" }) {
-      childImageSharp {
+    homepage: contentfulHomePage {
+      heroHeader
+      heroSubheader
+      heroImage {
         fluid(maxWidth: 1400) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyContentfulFluid
         }
       }
-    }
-
-    cardImage1: file(relativePath: { eq: "pizza.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-
-    cardImage2: file(relativePath: { eq: "festival.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-
-    cardImage3: file(relativePath: { eq: "2db.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-
-    cardImage4: file(relativePath: { eq: "bars.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-
-    cardImage5: file(relativePath: { eq: "food.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    bannerImage2: file(relativePath: { eq: "drone.jpg" }) {
-      childImageSharp {
+      descriptionHeader
+      descriptionSubheader
+      descriptionText
+      productHeader
+      productSubheader
+      productText
+      newsletterHeader
+      newsletterImage {
         fluid(maxWidth: 1400) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyContentfulFluid
+        }
+      }
+    }
+
+    indexCards: allContentfulPost {
+      edges {
+        node {
+          title
+          category
+          cardImage {
+            fluid(maxWidth: 800) {
+              ...GatsbyContentfulFluid
+            }
+          }
         }
       }
     }

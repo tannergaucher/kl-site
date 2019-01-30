@@ -5,6 +5,7 @@ const NavLink = styled(Link)`
   color: grey;
   transition: ease-in-out 0.2s;
   letter-spacing: 1.1px;
+  font-weight: lighter;
 
   &:hover {
     color: white;
