@@ -34,7 +34,7 @@ const post = ({ data }) => {
     <Layout>
       <Styled>
         <header className="banner">
-          <Img fluid={featuredImage.fluid} style={{ height: '60vh' }} />
+          <Img fluid={featuredImage.fluid} style={{ height: '70vh' }} />
           <div className="banner-text">
             <h1>{title}</h1>
             <h5>{category}</h5>

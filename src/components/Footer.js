@@ -19,7 +19,7 @@ const Styled = styled.footer`
   background: black;
   color: white;
 
-  h5 {
+  h6 {
     margin: 0;
   }
 `
@@ -40,19 +40,19 @@ const Footer = () => (
     </NavLink>
 
     <NavLink to="/contact" uppercase="true">
-      <h5>Contact</h5>
+      <h6>Contact</h6>
     </NavLink>
     <NavLink to="/about" uppercase="true">
-      <h5>About</h5>
+      <h6>About</h6>
     </NavLink>
     <NavLink to="/faq" uppercase="true">
-      <h5>F.A.Q.</h5>
+      <h6>F.A.Q.</h6>
     </NavLink>
     <NavLink to="/friends" uppercase="true">
-      <h5>Friends</h5>
+      <h6>Friends</h6>
     </NavLink>
     <NavLink to="/" uppercase="true">
-      <h5>KL Inside Guide</h5>
+      <h6>KL Inside Guide</h6>
     </NavLink>
 
     {/* <div className="footer-legal">

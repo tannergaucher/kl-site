@@ -21,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     font-family: 'Karla', sans-serif;
     letter-spacing: -0.3px;
+    font-size: 20px;
   }
 `
 

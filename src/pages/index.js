@@ -27,16 +27,21 @@ const Styled = styled.div`
 
   .description,
   .product {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-left: 2em;
+    padding-right: 2em;
   }
 
   .index-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
+    grid-gap: 20px;
+    margin-left: ${props => props.theme.spacing};
+    margin-right: ${props => props.theme.spacing};
   }
 
   .newsletter {
@@ -49,7 +54,6 @@ const Styled = styled.div`
 
 const IndexPage = ({ data }) => {
   const {
-    slug,
     heroHeader,
     heroSubheader,
     heroImage,
@@ -81,14 +85,17 @@ const IndexPage = ({ data }) => {
 
         <main>
           <section className="description">
-            <h3>{descriptionHeader}</h3>
-            <h5>{descriptionSubheader}</h5>
-            <p>{descriptionText}</p>
+            <div>
+              <h3>{descriptionHeader}</h3>
+              <h5>{descriptionSubheader}</h5>
+              <p>{descriptionText}</p>
+            </div>
             <br />
           </section>
 
           <section className="index-cards">
             {edges.map(post => {
+              console.log('post', post)
               const { title, category, cardImage, slug } = post.node
               return (
                 <Link to={`/guide/${slug}`} key={slug}>
@@ -103,10 +110,11 @@ const IndexPage = ({ data }) => {
           </section>
 
           <section className="product">
-            <h3>{productHeader}</h3>
-            <h5>{productSubheader}</h5>
-            <p>{productText}</p>
-            <br />
+            <div>
+              <h3>{productHeader}</h3>
+              <h5>{productSubheader}</h5>
+              <p>{productText}</p>
+            </div>
           </section>
         </main>
 
