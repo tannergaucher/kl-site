@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import Footer from '../components/Footer'
+import Nav from './Nav'
+import BottomBar from './BottomBar'
+
 import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Karla:100,400,700');
+ @import url('https://fonts.googleapis.com/css?family=Karla:400,700|Noto+Serif');
+
 
   *, *:before, *:after {
 	box-sizing: border-box;
@@ -20,8 +23,16 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     min-height: 100vh;
     font-family: 'Karla', sans-serif;
-    letter-spacing: -0.3px;
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  p {
+    font-family: 'Noto Serif', serif;
+    letter-spacing: 0.03em;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    letter-spacing: -0.03rem;
   }
 `
 
@@ -29,8 +40,9 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyles />
+      <Nav />
       {children}
-      <Footer />
+      <BottomBar />
     </>
   </ThemeProvider>
 )

@@ -4,22 +4,26 @@ import Img from 'gatsby-image'
 
 const Styled = styled.div`
   display: grid;
+  grid-gap: 0.5em;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
   border-radius: 4px;
   color: black;
 
   .card-category {
+    margin: 0;
+    margin-left: ${props => props.theme.spacing};
+    margin-top: ${props => props.theme.spacing};
     text-transform: uppercase;
     font-weight: lighter;
     letter-spacing: 1.4px;
-    margin-bottom: 0;
-    padding-left: 0.5em;
   }
 
   .card-title {
+    margin: 0;
+    margin-left: ${props => props.theme.spacing};
     font-weight: lighter;
-    padding-left: 0.25em;
+    margin-bottom: ${props => props.theme.spacing};
   }
 
   :hover {

@@ -19,5 +19,3 @@ class NewsletterForm extends Component {
 }
 
 export default NewsletterForm
-
-

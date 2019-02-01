@@ -1,20 +1,24 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import styled from 'styled-components'
-import { Mail } from 'styled-icons/feather/Mail'
+import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import Card from '../components/Card'
 import NewsletterForm from '../components/NewsletterForm'
 
 import Link from '../components/styles/Link'
+import Icon from '../components/styles/Icon'
+
+import facebook from '../images/facebook.svg'
+import instagram from '../images/instagram.svg'
+import twitter from '../images/twitter.svg'
+import mail from '../images/mail.svg'
 
 const Styled = styled.div`
   .banner {
     position: relative;
   }
-
   .banner-text {
     text-align: center;
     position: absolute;
@@ -23,17 +27,20 @@ const Styled = styled.div`
     transform: translate(-50%, -50%);
     text-shadow: black 5px 5px 15px;
     color: white;
+    h1 {
+      font-weight: 300;
+    }
+    h3 {
+      font-weight: lighter;
+    }
   }
 
-  .description,
-  .product {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 2em;
-    padding-right: 2em;
+  main {
+    margin-top: 6rem;
+  }
+
+  .section-title {
+    text-align: center;
   }
 
   .index-cards {
@@ -44,28 +51,36 @@ const Styled = styled.div`
     margin-right: ${props => props.theme.spacing};
   }
 
+  .social {
+    margin-left: ${props => props.theme.spacing};
+    margin-right: ${props => props.theme.spacing};
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-icons {
+    margin-left: 2em;
+    margin-right: 2em;
+    display: flex;
+    justify-content: space-around;
+  }
+
   .newsletter {
-    h3 {
-      text-transform: uppercase;
-      font-weight: lighter;
-    }
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: papayawhip;
+    margin-bottom: 57.6px;
   }
 `
 
 const IndexPage = ({ data }) => {
-  const {
-    heroHeader,
-    heroSubheader,
-    heroImage,
-    descriptionHeader,
-    descriptionSubheader,
-    descriptionText,
-    productHeader,
-    productSubheader,
-    productText,
-    newsletterHeader,
-    newsletterImage,
-  } = data.homepage
+  const { heroImage } = data.homepage
 
   const { edges } = data.indexCards
 
@@ -75,24 +90,19 @@ const IndexPage = ({ data }) => {
         <header className="banner">
           <Img
             fluid={heroImage.fluid}
-            style={{ height: '100vh', filter: 'brightness(70%)' }}
+            style={{
+              height: 'calc(100vh - 50px - 57.6px)',
+              filter: 'brightness(70%)',
+            }}
           />
           <div className="banner-text">
-            <h1>{heroHeader}</h1>
-            <h3>{heroSubheader}</h3>
+            <h1>Untrip</h1>
+            <h3>What's Happening in KL</h3>
           </div>
         </header>
 
         <main>
-          <section className="description">
-            <div>
-              <h3>{descriptionHeader}</h3>
-              <h5>{descriptionSubheader}</h5>
-              <p>{descriptionText}</p>
-            </div>
-            <br />
-          </section>
-
+          <h3 className="section-title">Guide</h3>
           <section className="index-cards">
             {edges.map(post => {
               console.log('post', post)
@@ -109,26 +119,21 @@ const IndexPage = ({ data }) => {
             })}
           </section>
 
-          <section className="product">
-            <div>
-              <h3>{productHeader}</h3>
-              <h5>{productSubheader}</h5>
-              <p>{productText}</p>
+          <div className="social">
+            <h3>Follow Untrip</h3>
+            <div className="social-icons">
+              <Icon src={facebook} />
+              <Icon src={instagram} />
+              <Icon src={twitter} />
             </div>
-          </section>
-        </main>
+          </div>
 
-        <section className="newsletter banner">
-          <Img
-            style={{ height: '50vh', filter: 'brightness(95%)' }}
-            fluid={newsletterImage.fluid}
-          />
-          <div className="banner-text">
-            <Mail size={25} />
-            <h3>{newsletterHeader}</h3>
+          <div className="newsletter">
+            <Icon src={mail} />
+            <h3>Stay in the Loop</h3>
             <NewsletterForm />
           </div>
-        </section>
+        </main>
       </Styled>
     </Layout>
   )
@@ -139,21 +144,7 @@ export default IndexPage
 export const query = graphql`
   query {
     homepage: contentfulHomePage {
-      heroHeader
-      heroSubheader
       heroImage {
-        fluid(maxWidth: 1400) {
-          ...GatsbyContentfulFluid
-        }
-      }
-      descriptionHeader
-      descriptionSubheader
-      descriptionText
-      productHeader
-      productSubheader
-      productText
-      newsletterHeader
-      newsletterImage {
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid
         }

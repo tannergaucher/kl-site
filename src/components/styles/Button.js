@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 const Button = styled.button`
-  background: black;
   color: white;
-  border: none;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  margin-top: 1em;
+  background: black;
   letter-spacing: 2px;
-  color: lightgrey;
+  border: none;
+  border-radius: 2px;
+  padding: ${props => props.theme.spacing};
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export default Button
