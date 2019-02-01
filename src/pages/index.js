@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import Card from '../components/Card'
@@ -16,44 +15,27 @@ import twitter from '../images/twitter.svg'
 import mail from '../images/mail.svg'
 
 const Styled = styled.div`
-  .banner {
-    position: relative;
-  }
-  .banner-text {
+  margin-left: ${props => props.theme.spacing};
+  margin-right: ${props => props.theme.spacing};
+
+  header {
     text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-shadow: black 5px 5px 15px;
-    color: white;
-    h1 {
-      font-weight: 300;
-    }
     h3 {
       font-weight: lighter;
     }
   }
-
   main {
-    margin-top: 6rem;
-  }
-
-  .section-title {
-    text-align: center;
+    margin-top: 3em;
   }
 
   .index-cards {
+    margin-top: 3em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
-    margin-left: ${props => props.theme.spacing};
-    margin-right: ${props => props.theme.spacing};
   }
 
   .social {
-    margin-left: ${props => props.theme.spacing};
-    margin-right: ${props => props.theme.spacing};
     height: 30vh;
     display: flex;
     flex-direction: column;
@@ -62,47 +44,39 @@ const Styled = styled.div`
   }
 
   .social-icons {
-    margin-left: 2em;
-    margin-right: 2em;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2em;
+    > * {
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.2);
+      }
+    }
   }
-
   .newsletter {
     height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: papayawhip;
     margin-bottom: 57.6px;
   }
 `
 
 const IndexPage = ({ data }) => {
-  const { heroImage } = data.homepage
-
   const { edges } = data.indexCards
 
   return (
     <Layout>
       <Styled>
-        <header className="banner">
-          <Img
-            fluid={heroImage.fluid}
-            style={{
-              height: 'calc(100vh - 50px - 57.6px)',
-              filter: 'brightness(70%)',
-            }}
-          />
-          <div className="banner-text">
-            <h1>Untrip</h1>
-            <h3>What's Happening in KL</h3>
-          </div>
+        <header>
+          <h1>Untrip</h1>
+          <h3>Inside Guide to What's Happening in KL</h3>
         </header>
 
         <main>
-          <h3 className="section-title">Guide</h3>
           <section className="index-cards">
             {edges.map(post => {
               console.log('post', post)

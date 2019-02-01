@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 import Link from 'gatsby-link'
 
-import salad from '../images/salad.svg'
-import bottle from '../images/bottle.svg'
+import cutlery from '../images/cutlery.svg'
+import cheers from '../images/cheers.svg'
 import confetti from '../images/confetti.svg'
 
 const Icon = styled.img`
-  height: 25px;
-  width: 25px;
+  height: 18px;
+  width: 18px;
   margin-top: 0.5em;
 `
 
@@ -17,8 +17,13 @@ const IconLink = styled(Link)`
   color: inherit;
   text-decoration: none;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   h6 {
-    margin-top: 0.01em;
+    margin-top: 0.3em;
     margin-bottom: 0.5em;
     font-weight: lighter;
     font-size: 10px;
@@ -34,16 +39,9 @@ const Styled = styled.nav`
   z-index: 1;
   display: flex;
   justify-content: space-around;
-  background: #ffffff;
-  border-top: 1px solid lightgrey;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-
-  .nav-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  background: black;
+  color: white;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
 `
 
 class BottomBar extends React.Component {
@@ -52,14 +50,14 @@ class BottomBar extends React.Component {
       <Styled>
         <div className="nav-icon">
           <IconLink to="/food">
-            <Icon src={salad} />
+            <Icon src={cutlery} />
             <h6>Food</h6>
           </IconLink>
         </div>
 
         <div className="nav-icon">
           <IconLink to="/drink">
-            <Icon src={bottle} />
+            <Icon src={cheers} />
             <h6>Drink</h6>
           </IconLink>
         </div>

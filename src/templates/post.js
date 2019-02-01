@@ -1,18 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
 import Layout from '../components/layout'
-
 import Img from 'gatsby-image'
+import PostCredit from '../components/PostCredit'
 
 const Styled = styled.div`
+  display: grid;
+  margin-bottom: 5em;
+  grid-template-columns: ${props => props.theme.spacing} 1fr ${props =>
+      props.theme.spacing};
+
+  header {
+    grid-column: 2;
+  }
+
+  .featured-image {
+    grid-column: 1 / -1;
+  }
+
   article {
-    padding-left: ${props => props.theme.spacing};
-    padding-right: ${props => props.theme.spacing};
+    margin-top: ${props => props.theme.spacing};
+    grid-column: 2;
   }
 `
 
 const post = ({ data }) => {
-  const { title, author, category, tags, featuredImage } = data.contentfulPost
+  const {
+    title,
+    author,
+    category,
+    tags,
+    featuredImage,
+    authorImage,
+  } = data.contentfulPost
   // prettier-ignore
   const { html } = data.contentfulPost.childContentfulPostArticleTextNode.childMarkdownRemark
 
@@ -20,14 +40,18 @@ const post = ({ data }) => {
     <Layout>
       <Styled>
         <header>
-          <div>
-            <h5>{category}</h5>
-            <h1>{title}</h1>
-            <h6>{tags}</h6>
-            <h6>By {author}</h6>
-          </div>
-          <Img fluid={featuredImage.fluid} style={{ height: '30vh' }} />
+          <h1>{title}</h1>
+          <PostCredit
+            author={author}
+            authorImage={authorImage.fixed}
+            datePublished="10/29/2019"
+          />
         </header>
+        <Img
+          className="featured-image"
+          fluid={featuredImage.fluid}
+          style={{ height: '30vh' }}
+        />
         <article>
           <div
             dangerouslySetInnerHTML={{
@@ -57,6 +81,11 @@ export const pageQuery = graphql`
       featuredImage {
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid
+        }
+      }
+      authorImage {
+        fixed(width: 50) {
+          ...GatsbyContentfulFixed
         }
       }
     }
