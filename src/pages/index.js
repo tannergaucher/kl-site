@@ -14,11 +14,14 @@ import instagram from '../images/instagram.svg'
 import twitter from '../images/twitter.svg'
 import mail from '../images/mail.svg'
 
+// TODO: change layout to grid-template-colums 1em 1fr(?) 1em. BC can span banners / itens full width if wanted
+
 const Styled = styled.div`
-  margin-left: ${props => props.theme.spacing};
-  margin-right: ${props => props.theme.spacing};
+  display: grid;
+  grid-template-columns: 1em 1fr 1em;
 
   header {
+    grid-column: 2;
     text-align: center;
     h3 {
       font-weight: lighter;
@@ -26,10 +29,10 @@ const Styled = styled.div`
   }
   main {
     margin-top: 3em;
+    grid-column: 2;
   }
 
   .index-cards {
-    margin-top: 3em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
@@ -55,6 +58,7 @@ const Styled = styled.div`
       }
     }
   }
+
   .newsletter {
     height: 30vh;
     display: flex;
