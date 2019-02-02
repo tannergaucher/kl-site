@@ -28,7 +28,7 @@ const Styled = styled.div`
     }
   }
   main {
-    margin-top: 3em;
+    margin-top: 1em;
     grid-column: 2;
   }
 
@@ -39,7 +39,8 @@ const Styled = styled.div`
   }
 
   .social {
-    height: 30vh;
+    grid-column: 1 / -1;
+    height: 48vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,12 +61,14 @@ const Styled = styled.div`
   }
 
   .newsletter {
-    height: 30vh;
+    height: 48vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 57.6px;
+    margin-bottom: 47.5px;
+    background: gainsboro;
+    grid-column: 1 / -1;
   }
 `
 
@@ -96,22 +99,21 @@ const IndexPage = ({ data }) => {
               )
             })}
           </section>
-
-          <div className="social">
-            <h3>Follow Untrip</h3>
-            <div className="social-icons">
-              <Icon src={facebook} />
-              <Icon src={instagram} />
-              <Icon src={twitter} />
-            </div>
-          </div>
-
-          <div className="newsletter">
-            <Icon src={mail} />
-            <h3>Stay in the Loop</h3>
-            <NewsletterForm />
-          </div>
         </main>
+
+        <div className="social">
+          <h3>Follow Untrip</h3>
+          <div className="social-icons">
+            <Icon src={facebook} />
+            <Icon src={instagram} />
+            <Icon src={twitter} />
+          </div>
+        </div>
+        <div className="newsletter">
+          <Icon src={mail} />
+          <h3>Stay in the Loop</h3>
+          <NewsletterForm />
+        </div>
       </Styled>
     </Layout>
   )

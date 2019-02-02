@@ -2,10 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Link from 'gatsby-link'
-
-import cutlery from '../images/cutlery.svg'
-import cheers from '../images/cheers.svg'
-import confetti from '../images/confetti.svg'
+import chat from '../images/chat.svg'
+import directions from '../images/directions.svg'
+import heart from '../images/heart.svg'
 
 const Icon = styled.img`
   height: 18px;
@@ -49,22 +48,21 @@ class BottomBar extends React.Component {
     return (
       <Styled>
         <div className="nav-icon">
-          <IconLink to="/food">
-            <Icon src={cutlery} />
-            <h6>Food</h6>
-          </IconLink>
-        </div>
-
-        <div className="nav-icon">
-          <IconLink to="/drink">
-            <Icon src={cheers} />
-            <h6>Drink</h6>
+          <IconLink to="/favorites">
+            <Icon src={heart} />
+            <h6>Saved</h6>
           </IconLink>
         </div>
         <div className="nav-icon">
-          <IconLink to="/events">
-            <Icon src={confetti} />
-            <h6>Events</h6>
+          <IconLink to="/guide">
+            <Icon src={directions} />
+            <h6>Guide</h6>
+          </IconLink>
+        </div>
+        <div className="nav-icon">
+          <IconLink to="/chat">
+            <Icon src={chat} />
+            <h6>Chat</h6>
           </IconLink>
         </div>
       </Styled>
