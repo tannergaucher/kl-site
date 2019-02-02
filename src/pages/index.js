@@ -13,6 +13,7 @@ import facebook from '../images/facebook.svg'
 import instagram from '../images/instagram.svg'
 import twitter from '../images/twitter.svg'
 import mail from '../images/mail.svg'
+import Img from 'gatsby-image'
 
 // TODO: change layout to grid-template-colums 1em 1fr(?) 1em. BC can span banners / itens full width if wanted
 
@@ -74,13 +75,20 @@ const Styled = styled.div`
 
 const IndexPage = ({ data }) => {
   const { edges } = data.indexCards
+  const { heroHeader, heroSubheader, descriptionHeader } = data.homepage
 
   return (
     <Layout>
       <Styled>
         <header>
-          <h1>Untrip</h1>
-          <h3>Inside Guide to What's Happening in KL</h3>
+          <Img
+            fluid={data.homepage.heroImage.fluid}
+            style={{ height: '30vh' }}
+          />
+          <div>
+            <h1>{heroHeader}</h1>
+            <h3>{heroSubheader}</h3>
+          </div>
         </header>
 
         <main>
@@ -124,6 +132,9 @@ export default IndexPage
 export const query = graphql`
   query {
     homepage: contentfulHomePage {
+      heroHeader
+      heroSubheader
+      descriptionHeader
       heroImage {
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid

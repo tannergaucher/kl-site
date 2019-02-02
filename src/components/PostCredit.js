@@ -9,6 +9,7 @@ const Styled = styled.div`
     h6 {
       margin: 0;
       font-weight: lighter;
+      color: #696969;
     }
   }
 `

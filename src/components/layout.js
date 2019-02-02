@@ -9,7 +9,9 @@ import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
  @import url('https://fonts.googleapis.com/css?family=Karla:400,700|Noto+Serif');
-
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+ @import url('https://fonts.googleapis.com/css?family=Noto+Serif+SC');
+ @import url('https://fonts.googleapis.com/css?family=Merriweather|Noto+Serif+SC');
 
   *, *:before, *:after {
 	box-sizing: border-box;
@@ -28,8 +30,10 @@ const GlobalStyles = createGlobalStyle`
 
   p {
     font-family: 'Noto Serif', serif;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.015em;
+    line-height: 1.5;
   }
+
 
   h1,h2,h3,h4,h5,h6 {
     letter-spacing: -0.03rem;
