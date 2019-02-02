@@ -22,8 +22,19 @@ const Styled = styled.div`
   grid-template-columns: 1em 1fr 1em;
 
   header {
-    grid-column: 2;
+    grid-column: 1 / -1;
     text-align: center;
+    position: relative;
+
+    .header-text {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+
     h3 {
       font-weight: lighter;
     }
@@ -83,14 +94,13 @@ const IndexPage = ({ data }) => {
         <header>
           <Img
             fluid={data.homepage.heroImage.fluid}
-            style={{ height: '30vh' }}
+            style={{ height: '35vh', filter: 'brightness(60%)' }}
           />
-          <div>
+          <div className="header-text">
             <h1>{heroHeader}</h1>
             <h3>{heroSubheader}</h3>
           </div>
         </header>
-
         <main>
           <section className="index-cards">
             {edges.map(post => {
