@@ -24,7 +24,6 @@ exports.createPages = ({ graphql, actions }) => {
             component: path.resolve(`./src/templates/post.js`),
             // gets passed in as variable in graphql page query
             context: {
-              // todo: some kind of validation to make sure it's a slug
               slug: post.node.slug,
             },
           })

@@ -1,21 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import Card from '../components/Card'
 import NewsletterForm from '../components/NewsletterForm'
-
 import Link from '../components/styles/Link'
-import Icon from '../components/styles/Icon'
+import Social from '../components/Social'
 
-import facebook from '../images/facebook.svg'
-import instagram from '../images/instagram.svg'
-import twitter from '../images/twitter.svg'
+import Button from '../components/styles/Button'
 import mail from '../images/mail.svg'
-import Img from 'gatsby-image'
-
-// TODO: change layout to grid-template-colums 1em 1fr(?) 1em. BC can span banners / itens full width if wanted
 
 const Styled = styled.div`
   display: grid;
@@ -48,63 +43,59 @@ const Styled = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
+    margin-bottom: ${props => props.theme.spacing};
   }
 
-  .social {
-    grid-column: 1 / -1;
-    height: 48vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .social-icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2em;
-    > * {
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        transition: all 0.2s ease-in-out;
-        transform: scale(1.2);
-      }
-    }
+  .instagram-feed {
+    grid-column: 2;
   }
 
   .newsletter {
-    height: 48vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 47.5px;
-    background: gainsboro;
     grid-column: 1 / -1;
+    position: relative;
+    margin-bottom: 47.5px;
+  }
+
+  /* TODO refactor into 1 hero banner class */
+  .newsletter-text {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
   }
 `
 
 const IndexPage = ({ data }) => {
   const { edges } = data.indexCards
-  const { heroHeader, heroSubheader, descriptionHeader } = data.homepage
+  const {
+    heroHeader,
+    heroSubheader,
+    heroImage,
+    newsletterText,
+    newsletterImage,
+  } = data.homepage
 
   return (
     <Layout>
       <Styled>
         <header>
           <Img
-            fluid={data.homepage.heroImage.fluid}
+            fluid={heroImage.fluid}
             style={{ height: '35vh', filter: 'brightness(60%)' }}
           />
           <div className="header-text">
             <h1>{heroHeader}</h1>
             <h3>{heroSubheader}</h3>
+            <Button>SIGN UP</Button>
+            <Button>NEWSLETTER</Button>
           </div>
         </header>
+
         <main>
           <section className="index-cards">
             {edges.map(post => {
-              console.log('post', post)
               const { title, category, cardImage, slug } = post.node
               return (
                 <Link to={`/guide/${slug}`} key={slug}>
@@ -117,20 +108,19 @@ const IndexPage = ({ data }) => {
               )
             })}
           </section>
+          {/* <Social /> */}
         </main>
 
-        <div className="social">
-          <h3>Follow Untrip</h3>
-          <div className="social-icons">
-            <Icon src={facebook} />
-            <Icon src={instagram} />
-            <Icon src={twitter} />
-          </div>
-        </div>
         <div className="newsletter">
-          <Icon src={mail} />
-          <h3>Stay in the Loop</h3>
-          <NewsletterForm />
+          <Img
+            fluid={newsletterImage.fluid}
+            style={{ height: '35vh', filter: 'brightness(60%)' }}
+          />
+          <div className="newsletter-text">
+            <img src={mail} style={{ height: '35px', width: '35px' }} />
+            <p>{newsletterText}</p>
+            <NewsletterForm />
+          </div>
         </div>
       </Styled>
     </Layout>
@@ -144,8 +134,13 @@ export const query = graphql`
     homepage: contentfulHomePage {
       heroHeader
       heroSubheader
-      descriptionHeader
       heroImage {
+        fluid(maxWidth: 1400) {
+          ...GatsbyContentfulFluid
+        }
+      }
+      newsletterText
+      newsletterImage {
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid
         }

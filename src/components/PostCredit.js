@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 
 const Styled = styled.div`
   display: flex;
-  margin-bottom: 2em;
+  margin-bottom: ${props => props.theme.spacing};
   .post-info {
     h6 {
       margin: 0;

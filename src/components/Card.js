@@ -4,16 +4,14 @@ import Img from 'gatsby-image'
 
 const Styled = styled.div`
   display: grid;
-  grid-gap: ${props => props.theme.spacing};
   line-height: 1;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  border-radius: 2px;
   color: black;
   transition: all 0.2s ease-in-out;
 
   .card-text {
-    margin-left: ${props => props.theme.spacing};
-    margin-bottom: ${props => props.theme.spacing};
+    padding: ${props => props.theme.spacing};
   }
 
   .card-category {
@@ -38,7 +36,7 @@ const Card = ({ fluid, category, title }) => (
   <Styled>
     <Img
       fluid={fluid}
-      style={{ height: '200px', borderRadius: '4px 4px 0 0' }}
+      style={{ height: '200px', borderRadius: '2px 2px 0 0' }}
     />
     <div className="card-text">
       <h5 className="card-category">{category}</h5>

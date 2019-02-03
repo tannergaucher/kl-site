@@ -6,7 +6,7 @@ const Styled = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  background: black;
+  background: #100e17;
   color: white;
   z-index: 2;
   min-height: 50px;
@@ -32,7 +32,7 @@ const Nav = () => (
     <NavLink to="/">
       <h6>Untrip</h6>
     </NavLink>
-    <h6 className="sign-up">Sign Up</h6>
+    {/* <h6 className="sign-up">Sign Up</h6> */}
   </Styled>
 )
 

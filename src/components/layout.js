@@ -9,9 +9,6 @@ import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
  @import url('https://fonts.googleapis.com/css?family=Karla:400,700|Noto+Serif');
- @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
- @import url('https://fonts.googleapis.com/css?family=Noto+Serif+SC');
- @import url('https://fonts.googleapis.com/css?family=Merriweather|Noto+Serif+SC');
 
   *, *:before, *:after {
 	box-sizing: border-box;

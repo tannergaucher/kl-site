@@ -38,7 +38,7 @@ const Styled = styled.nav`
   z-index: 1;
   display: flex;
   justify-content: space-around;
-  background: black;
+  background: #100e17;
   color: white;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
 `
