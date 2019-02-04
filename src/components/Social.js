@@ -70,6 +70,7 @@ const Social = () => (
     </Button>
 
     <Button style={{ background: 'red' }}>
+      add to favorites
       <Link to="#">
         <Icon src={like} />
       </Link>

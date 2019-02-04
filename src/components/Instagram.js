@@ -11,7 +11,7 @@ const Styled = styled.div`
   margin-bottom: ${props => props.theme.spacing};
 
   .img-wrapper {
-    flex-basis: calc(25% - 1vw);
+    flex-basis: calc(33.333% - 1vw);
     margin: 0.5vw;
     box-sizing: border-box;
 
@@ -25,7 +25,7 @@ const Instagram = () => (
   <StaticQuery
     query={graphql`
       query InstagramFeedQuery {
-        allInstaNode(limit: 8) {
+        allInstaNode(limit: 9) {
           edges {
             node {
               id

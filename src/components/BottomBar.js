@@ -23,8 +23,8 @@ const IconLink = styled(Link)`
   align-items: center;
 
   h6 {
-    margin-top: 0.3em;
-    margin-bottom: 0.5em;
+    /* margin-top: 0.3em;
+    margin-bottom: 0.5em; */
     font-weight: lighter;
     font-size: 10px;
     letter-spacing: -3%;
@@ -32,6 +32,7 @@ const IconLink = styled(Link)`
 `
 
 const Styled = styled.nav`
+  height: 47.5px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -39,9 +40,10 @@ const Styled = styled.nav`
   z-index: 1;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   background: black;
   color: white;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
+  /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9); */
 `
 
 class BottomBar extends React.Component {
@@ -50,20 +52,20 @@ class BottomBar extends React.Component {
       <Styled>
         <div className="nav-icon">
           <IconLink to="/">
-            <Icon src={home} />
-            <h6>HOME</h6>
+            {/* <Icon src={home} /> */}
+            <h6>Untrip</h6>
           </IconLink>
         </div>
         <div className="nav-icon">
           <IconLink to="/guide">
-            <Icon src={directions} />
-            <h6>GUIDE</h6>
+            {/* <Icon src={directions} /> */}
+            <h6>Guide</h6>
           </IconLink>
         </div>
         <div className="nav-icon">
           <IconLink to="/favorites">
-            <Icon src={heart} />
-            <h6>SAVED</h6>
+            {/* <Icon src={heart} /> */}
+            <h6>Favorites</h6>
           </IconLink>
         </div>
         {/* only display for paid  user*/}

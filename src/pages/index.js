@@ -43,7 +43,7 @@ const Styled = styled.div`
 
   .instagram-gallery {
     h3 {
-      text-align: center;
+      margin-left: ${props => props.theme.spacing};
     }
     grid-column: 1 / -1;
   }
@@ -65,25 +65,26 @@ const Styled = styled.div`
 
 const IndexPage = ({ data }) => {
   const { edges } = data.indexCards
-  const { heroHeader, heroSubheader, heroImage, newsletterText } = data.homepage
+  const { heroHeader, heroSubheader, newsletterText } = data.homepage
 
   return (
     <Layout>
       <Styled>
         <header className="hero">
           <Img
-            fluid={heroImage.fluid}
+            fluid={data.heroImage.childImageSharp.fluid}
             style={{ height: 'calc(100vh - 47.5px)' }}
           />
 
           <div className="hero-text">
             <h1>{heroHeader}</h1>
             <h3>{heroSubheader}</h3>
+
             <form>
-              <input placeholder="email" type="email" />
-              <button>Newsletter</button>
+              <input />
+              <button>Get Newsletter</button>
             </form>
-            <button>Sign Up</button>
+            <button>Sign in</button>
           </div>
         </header>
 
@@ -112,7 +113,7 @@ const IndexPage = ({ data }) => {
 
         <div className="newsletter">
           <img src={mail} style={{ height: '35px', width: '35px' }} />
-          <p>{newsletterText}</p>
+          <h6>{newsletterText}</h6>
           <NewsletterForm />
         </div>
       </Styled>
@@ -128,9 +129,16 @@ export const query = graphql`
       heroHeader
       heroSubheader
       newsletterText
-      heroImage {
-        fluid(maxWidth: 1400) {
-          ...GatsbyContentfulFluid
+    }
+
+    heroImage: file(relativePath: { eq: "towers.jpg" }) {
+      childImageSharp {
+        fluid(
+          maxWidth: 1400
+          duotone: { shadow: "#665f52", highlight: "#5f00c9", opacity: 46 }
+          toFormat: PNG
+        ) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
