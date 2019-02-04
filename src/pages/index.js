@@ -5,7 +5,6 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import FullCard from '../components/FullCard'
-import NewsletterForm from '../components/NewsletterForm'
 import Link from '../components/styles/Link'
 import Instagram from '../components/Instagram'
 
@@ -53,13 +52,40 @@ const Styled = styled.div`
     position: relative;
     margin-bottom: 47.5px;
     height: 35vh;
-    background: black;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: black;
+  }
+`
+
+const Button = styled.button`
+  padding: ${props => props.theme.spacing};
+  background: black;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left: none;
+  color: white;
+  letter-spacing: 0.03em;
+  font-size: 12px;
+`
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+
+  input {
+    border: 2.5px solid black;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-right: none;
+    background: rgba(0, 0, 0, 0.1);
     color: white;
+    font-size: 16px;
   }
 `
 
@@ -77,14 +103,12 @@ const IndexPage = ({ data }) => {
           />
 
           <div className="hero-text">
-            <h1>{heroHeader}</h1>
+            <h1 style={{ fontSize: '50px' }}>{heroHeader}</h1>
             <h3>{heroSubheader}</h3>
-
-            <form>
+            <Form>
               <input />
-              <button>Get Newsletter</button>
-            </form>
-            <button>Sign in</button>
+              <Button>Newsletter</Button>
+            </Form>
           </div>
         </header>
 
@@ -112,9 +136,15 @@ const IndexPage = ({ data }) => {
         </section>
 
         <div className="newsletter">
-          <img src={mail} style={{ height: '35px', width: '35px' }} />
-          <h6>{newsletterText}</h6>
-          <NewsletterForm />
+          <h3>{newsletterText}</h3>
+          <Form>
+            <input
+              style={{
+                color: 'black',
+              }}
+            />
+            <Button>Newsletter</Button>
+          </Form>
         </div>
       </Styled>
     </Layout>
