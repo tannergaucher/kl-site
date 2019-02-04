@@ -41,7 +41,7 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyles />
-      <Nav />
+      {/* <Nav /> */}
       {children}
       <BottomBar />
     </>

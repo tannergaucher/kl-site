@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
+import Link from 'gatsby-link'
 
 import PostCredit from '../components/PostCredit'
 import Social from '../components/Social'
@@ -30,12 +31,6 @@ const Styled = styled.div`
   article {
     margin-top: ${props => props.theme.spacing};
     grid-column: 2;
-
-    .post-links {
-      h3 {
-        text-align: center;
-      }
-    }
   }
 `
 
@@ -45,7 +40,6 @@ const post = ({ data }) => {
     title,
     author,
     category,
-    tags,
     introSentence,
     featuredImage,
     authorImage,
@@ -60,6 +54,7 @@ const post = ({ data }) => {
     <Layout>
       <Styled>
         <header>
+          <h4>Untrip / {category}</h4>
           <h1>{title}</h1>
           <PostCredit
             author={author}
@@ -86,24 +81,32 @@ const post = ({ data }) => {
           <div className="post-links">
             <h3>Similar</h3>
             {/* todo: filter similar posts by tag */}
-
             {featuredPosts.map(featuredPost => (
-              <FullCard
-                title={featuredPost.title}
-                category={featuredPost.category}
-                fluid={featuredPost.cardImage.fluid}
-                slug={featuredPost.slug}
-              />
+              <div style={{ marginBottom: '1em' }}>
+                <Link
+                  to={`/guide/${featuredPost.slug}`}
+                  key={featuredPost.slug}
+                >
+                  <FullCard
+                    title={featuredPost.title}
+                    category={featuredPost.category}
+                    fluid={featuredPost.cardImage.fluid}
+                  />
+                </Link>
+              </div>
             ))}
 
             <h3>Popular</h3>
             {featuredPosts.map(featuredPost => (
-              <FullCard
-                title={featuredPost.title}
-                category={featuredPost.category}
-                fluid={featuredPost.cardImage.fluid}
-                slug={featuredPost.slug}
-              />
+              <div style={{ marginBottom: '1em' }}>
+                <Link to={`/guide/${featuredPost.slug}`}>
+                  <FullCard
+                    title={featuredPost.title}
+                    category={featuredPost.category}
+                    fluid={featuredPost.cardImage.fluid}
+                  />
+                </Link>
+              </div>
             ))}
           </div>
         </article>

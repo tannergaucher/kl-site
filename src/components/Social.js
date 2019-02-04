@@ -6,6 +6,7 @@ import instagram from '../images/instagram.svg'
 import facebook from '../images/facebook.svg'
 import messenger from '../images/messenger.svg'
 import twitter from '../images/twitter.svg'
+import like from '../images/like.svg'
 
 const Styled = styled.div`
   display: flex;
@@ -61,9 +62,16 @@ const Social = () => (
         <Icon src={messenger} />
       </Link>
     </Button>
+
     <Button style={{ background: '#1da1f2' }}>
       <Link to="#">
         <Icon src={twitter} />
+      </Link>
+    </Button>
+
+    <Button style={{ background: 'red' }}>
+      <Link to="#">
+        <Icon src={like} />
       </Link>
     </Button>
   </Styled>

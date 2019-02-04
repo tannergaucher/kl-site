@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
-import Link from '../components/styles/Link'
 
 const Styled = styled.div`
   position: relative;
   border-radius: 2px;
-  margin-bottom: ${props => props.theme.spacing};
   transition: all 0.2s ease-in-out;
 
   &:last-child {
@@ -34,7 +32,7 @@ const Styled = styled.div`
     color: white;
   }
 
-  .background {
+  .text-background {
     background: rgba(0, 0, 0, 0.8);
     padding-left: 0.2em;
     padding-right: 0.2em;
@@ -42,14 +40,12 @@ const Styled = styled.div`
   }
 `
 
-export default function FullCard({ category, title, slug, fluid }) {
+export default function FullCard({ category, title, fluid }) {
   return (
     <Styled>
-      <Link to={`/guide/${slug}`}>
-        <Img fluid={fluid} style={{ height: '30vh', borderRadius: '2px' }} />
-        <h6 className="card-category background">{category}</h6>
-        <h2 className="card-title background">{title}</h2>
-      </Link>
+      <Img fluid={fluid} style={{ height: '200px', borderRadius: '2px' }} />
+      <h6 className="card-category text-background">{category}</h6>
+      <h2 className="card-title text-background">{title}</h2>
     </Styled>
   )
 }

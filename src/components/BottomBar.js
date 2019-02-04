@@ -5,6 +5,7 @@ import Link from 'gatsby-link'
 import chat from '../images/chat.svg'
 import directions from '../images/directions.svg'
 import heart from '../images/heart.svg'
+import home from '../images/home.svg'
 
 const Icon = styled.img`
   height: 18px;
@@ -38,7 +39,7 @@ const Styled = styled.nav`
   z-index: 1;
   display: flex;
   justify-content: space-around;
-  background: #100e17;
+  background: black;
   color: white;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9);
 `
@@ -48,23 +49,30 @@ class BottomBar extends React.Component {
     return (
       <Styled>
         <div className="nav-icon">
-          <IconLink to="/favorites">
-            <Icon src={heart} />
-            <h6>Saved</h6>
+          <IconLink to="/">
+            <Icon src={home} />
+            <h6>HOME</h6>
           </IconLink>
         </div>
         <div className="nav-icon">
           <IconLink to="/guide">
             <Icon src={directions} />
-            <h6>Guide</h6>
+            <h6>GUIDE</h6>
           </IconLink>
         </div>
         <div className="nav-icon">
-          <IconLink to="/chat">
-            <Icon src={chat} />
-            <h6>Chat</h6>
+          <IconLink to="/favorites">
+            <Icon src={heart} />
+            <h6>SAVED</h6>
           </IconLink>
         </div>
+        {/* only display for paid  user*/}
+        {/* <div className="nav-icon">
+          <IconLink to="/chat">
+            <Icon src={chat} />
+            <h6>CHAT</h6>
+          </IconLink>
+        </div> */}
       </Styled>
     )
   }

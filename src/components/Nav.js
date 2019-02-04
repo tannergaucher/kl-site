@@ -6,7 +6,7 @@ const Styled = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  background: #100e17;
+  background: black;
   color: white;
   z-index: 2;
   min-height: 50px;
@@ -15,6 +15,7 @@ const Styled = styled.header`
   justify-content: space-between;
   padding-left: ${props => props.theme.spacing};
   padding-right: ${props => props.theme.spacing};
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
 
   h6 {
     margin: 0;

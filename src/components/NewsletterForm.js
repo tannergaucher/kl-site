@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Form from './styles/Form'
-import Button from './styles/Button'
+// import Button from './styles/Button'
 
 class NewsletterForm extends Component {
   state = {}
@@ -11,7 +11,7 @@ class NewsletterForm extends Component {
       <>
         <Form onSubmit={e => e.preventDefault()}>
           <input placeholder="Email Address" type="email" name="email" />
-          <Button type="submit">SUBMIT</Button>
+          <button type="submit">SUBMIT</button>
         </Form>
       </>
     )

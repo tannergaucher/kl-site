@@ -4,7 +4,7 @@ const Form = styled.form`
   display: flex;
   input {
     font-family: ${props => props.theme.font};
-    border: 2px solid lightgrey;
+    border: none;
     border-radius: 2px;
   }
 `

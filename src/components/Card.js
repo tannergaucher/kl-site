@@ -39,7 +39,7 @@ const Card = ({ fluid, category, title }) => (
       style={{ height: '200px', borderRadius: '2px 2px 0 0' }}
     />
     <div className="card-text">
-      <h5 className="card-category">{category}</h5>
+      {/* <h5 className="card-category">{category}</h5> */}
       <h3 className="card-title">{title}</h3>
     </div>
   </Styled>

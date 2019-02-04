@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Kl Site`,
+    title: `Untrip`,
     description: ``,
     author: `Tanner Gaucher`,
   },
@@ -19,6 +19,12 @@ module.exports = {
       options: {
         spaceId: 'bndo1vzme453',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `maefurriel`,
       },
     },
     `gatsby-transformer-sharp`,
