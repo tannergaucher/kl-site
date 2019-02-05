@@ -56,7 +56,7 @@ const post = ({ data }) => {
     <Layout>
       <Styled>
         <header>
-          <h4>Untrip / {category}</h4>
+          <h4>{category}</h4>
           <h1>{title}</h1>
           <Avatar
             author={author}

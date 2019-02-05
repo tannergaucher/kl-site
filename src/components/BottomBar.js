@@ -14,6 +14,10 @@ const Styled = styled.nav`
   align-items: center;
   background: black;
   color: white;
+
+  @media (min-width: 750px) {
+    display: none;
+  }
 `
 
 const NavLink = styled(Link)`

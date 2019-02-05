@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import BottomBar from './BottomBar'
+import Nav from './Nav'
 
 import theme from '../theme'
 
@@ -41,6 +42,7 @@ const Layout = ({ children }) => (
       <GlobalStyles />
       {children}
       <BottomBar />
+      <Nav />
     </>
   </ThemeProvider>
 )

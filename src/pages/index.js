@@ -1,154 +1,53 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
-import Card from '../components/Card'
-import Link from '../components/styles/Link'
+import Hero from '../components/Hero'
+import PostsList from '../components/PostsList'
 import Instagram from '../components/Instagram'
+import Newsletter from '../components/Newsletter'
 
 const Styled = styled.div`
-  display: grid;
-  grid-template-columns: 1em 1fr 1em;
+  text-align: center;
 
-  .hero {
-    position: relative;
-    grid-column: 1 / -1;
-    text-align: center;
-    position: relative;
-    color: white;
-
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  main {
-    margin-top: 1em;
-    grid-column: 2;
-  }
-
-  .index-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-    margin-bottom: ${props => props.theme.spacing};
-  }
-
-  .instagram-gallery {
-    h3 {
-      margin-left: ${props => props.theme.spacing};
-    }
-    grid-column: 1 / -1;
-  }
-
-  .newsletter {
-    grid-column: 1 / -1;
-    position: relative;
-    margin-bottom: 47.5px;
-    height: 35vh;
+  .newsletter-footer {
+    height: calc(35vh + 47.5px);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: black;
-  }
-`
-
-const Button = styled.button`
-  padding: ${props => props.theme.spacing};
-  background: black;
-  border: 3px solid black;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-  color: white;
-  letter-spacing: 0.03em;
-  font-size: 12px;
-  transition: 0.2s;
-`
-
-const Form = styled.form`
-  display: flex;
-  justify-content: center;
-
-  input {
-    border: 3px solid black;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-right: none;
-    background: rgba(0, 0, 0, 0.1);
-    color: white;
-    font-size: 16px;
-    padding-left: 0.3em;
-    transition: 0.2s;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.05);
-      transition: 0.2s;
-    }
   }
 `
 
 const IndexPage = ({ data }) => {
-  const { edges } = data.indexCards
+  const posts = data.indexPosts.edges
+  const images = data.instagramFeed.edges
   const { heroHeader, heroSubheader, newsletterText } = data.homepage
-
   return (
     <Layout>
       <Styled>
-        <header className="hero">
-          <Img
-            fluid={data.heroImage.childImageSharp.fluid}
-            style={{ height: 'calc(100vh - 47.5px)' }}
-          />
-
-          <div className="hero-text">
-            <h1 style={{ fontSize: '50px' }}>{heroHeader}</h1>
-            <h3 style={{ fontWeight: 'lighter' }}>{heroSubheader}</h3>
-            <Form>
-              <input />
-              <Button>Newsletter</Button>
-            </Form>
-          </div>
-        </header>
-
+        <Hero
+          fluid={data.heroImage.childImageSharp.fluid}
+          header={heroHeader}
+          subHeader={heroSubheader}
+          newsletter={true}
+        />
         <main>
           <h3>Latest</h3>
-          <section className="index-cards">
-            {edges.map(post => {
-              const { title, category, cardImage, slug } = post.node
-              return (
-                <Link to={`/guide/${slug}`} key={slug}>
-                  <Card
-                    title={title}
-                    category={category}
-                    fluid={cardImage.fluid}
-                  />
-                </Link>
-              )
-            })}
-          </section>
-        </main>
+          <PostsList posts={posts} />
+          <h3>More</h3>
 
-        <section className="instagram-gallery">
           <h3>Untrip on Instagram</h3>
-          <Instagram />
-        </section>
+          <Instagram images={images} />
+          <h3>View more</h3>
 
-        <div className="newsletter">
-          <h3>{newsletterText}</h3>
-          <Form>
-            <input
-              style={{
-                color: 'black',
-              }}
-            />
-            <Button>Newsletter</Button>
-          </Form>
-        </div>
+          <div className="newsletter-footer">
+            <div>
+              <p>{newsletterText}</p>
+              <Newsletter />
+            </div>
+          </div>
+        </main>
       </Styled>
     </Layout>
   )
@@ -163,7 +62,6 @@ export const query = graphql`
       heroSubheader
       newsletterText
     }
-
     heroImage: file(relativePath: { eq: "towers.jpg" }) {
       childImageSharp {
         fluid(
@@ -176,7 +74,7 @@ export const query = graphql`
       }
     }
 
-    indexCards: allContentfulPost {
+    indexPosts: allContentfulPost {
       edges {
         node {
           title
@@ -185,6 +83,22 @@ export const query = graphql`
           cardImage {
             fluid(maxWidth: 800) {
               ...GatsbyContentfulFluid
+            }
+          }
+        }
+      }
+    }
+
+    instagramFeed: allInstaNode(limit: 9) {
+      edges {
+        node {
+          id
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
         }
