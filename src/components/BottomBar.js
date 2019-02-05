@@ -1,35 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import Link from 'gatsby-link'
-import chat from '../images/chat.svg'
-import directions from '../images/directions.svg'
-import heart from '../images/heart.svg'
-import home from '../images/home.svg'
-
-const Icon = styled.img`
-  height: 18px;
-  width: 18px;
-  margin-top: 0.5em;
-`
-
-const IconLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  h6 {
-    /* margin-top: 0.3em;
-    margin-bottom: 0.5em; */
-    font-weight: lighter;
-    font-size: 10px;
-    letter-spacing: -3%;
-  }
-`
 
 const Styled = styled.nav`
   height: 47.5px;
@@ -43,7 +14,25 @@ const Styled = styled.nav`
   align-items: center;
   background: black;
   color: white;
-  /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.9); */
+`
+
+const NavLink = styled(Link)`
+  color: grey;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+  &:hover {
+    color: white;
+    transition: 0.2s;
+  }
+  h6 {
+    font-weight: lighter;
+    font-size: 10px;
+    letter-spacing: -3%;
+  }
 `
 
 class BottomBar extends React.Component {
@@ -51,30 +40,20 @@ class BottomBar extends React.Component {
     return (
       <Styled>
         <div className="nav-icon">
-          <IconLink to="/">
-            {/* <Icon src={home} /> */}
+          <NavLink to="/">
             <h6>Untrip</h6>
-          </IconLink>
+          </NavLink>
         </div>
         <div className="nav-icon">
-          <IconLink to="/guide">
-            {/* <Icon src={directions} /> */}
+          <NavLink to="/guide">
             <h6>Guide</h6>
-          </IconLink>
+          </NavLink>
         </div>
         <div className="nav-icon">
-          <IconLink to="/favorites">
-            {/* <Icon src={heart} /> */}
+          <NavLink to="/favorites">
             <h6>Favorites</h6>
-          </IconLink>
+          </NavLink>
         </div>
-        {/* only display for paid  user*/}
-        {/* <div className="nav-icon">
-          <IconLink to="/chat">
-            <Icon src={chat} />
-            <h6>CHAT</h6>
-          </IconLink>
-        </div> */}
       </Styled>
     )
   }

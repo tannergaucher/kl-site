@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import Layout from '../components/layout'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 
-import PostCredit from '../components/PostCredit'
+import Avatar from '../components/Avatar'
 import Social from '../components/Social'
-import FullCard from '../components/FullCard'
+import Card from '../components/Card'
 
 const Styled = styled.div`
   display: grid;
@@ -40,6 +41,7 @@ const post = ({ data }) => {
     title,
     author,
     category,
+    createdAt,
     introSentence,
     featuredImage,
     authorImage,
@@ -56,10 +58,11 @@ const post = ({ data }) => {
         <header>
           <h4>Untrip / {category}</h4>
           <h1>{title}</h1>
-          <PostCredit
+          <Avatar
             author={author}
             authorImage={authorImage.fixed}
-            datePublished="10/29/2019"
+            // TODO Format date function
+            datePublished={createdAt}
           />
           <p>{introSentence}</p>
           <Social className="social" />
@@ -67,7 +70,7 @@ const post = ({ data }) => {
         <Img
           className="featured-image"
           fluid={featuredImage.fluid}
-          style={{ height: '30vh' }}
+          style={{ height: '300px' }}
         />
         <article>
           <div
@@ -77,17 +80,15 @@ const post = ({ data }) => {
           />
           <h3>Share the article</h3>
           <Social />
-
           <div className="post-links">
             <h3>Similar</h3>
-            {/* todo: filter similar posts by tag */}
             {featuredPosts.map(featuredPost => (
               <div style={{ marginBottom: '1em' }}>
                 <Link
                   to={`/guide/${featuredPost.slug}`}
                   key={featuredPost.slug}
                 >
-                  <FullCard
+                  <Card
                     title={featuredPost.title}
                     category={featuredPost.category}
                     fluid={featuredPost.cardImage.fluid}
@@ -95,12 +96,11 @@ const post = ({ data }) => {
                 </Link>
               </div>
             ))}
-
             <h3>Popular</h3>
             {featuredPosts.map(featuredPost => (
               <div style={{ marginBottom: '1em' }}>
                 <Link to={`/guide/${featuredPost.slug}`}>
-                  <FullCard
+                  <Card
                     title={featuredPost.title}
                     category={featuredPost.category}
                     fluid={featuredPost.cardImage.fluid}
@@ -125,6 +125,7 @@ export const pageQuery = graphql`
       category
       introSentence
       tags
+      createdAt
       childContentfulPostArticleTextNode {
         childMarkdownRemark {
           html

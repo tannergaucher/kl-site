@@ -3,46 +3,49 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 const Styled = styled.div`
-  display: grid;
-  line-height: 1;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  position: relative;
   border-radius: 2px;
-  color: black;
   transition: all 0.2s ease-in-out;
 
-  .card-text {
-    padding: ${props => props.theme.spacing};
+  &:last-child {
+    margin-bottom: 0;
   }
 
-  .card-category {
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: lighter;
-    letter-spacing: 1.4px;
-    margin-bottom: 0.3em;
-  }
-
-  .card-title {
-    margin: 0;
-    font-weight: lighter;
-  }
-  :hover {
+  &:hover {
     transition: all 0.2s ease-in-out;
     transform: scale(1.02);
   }
+
+  .card-category {
+    position: absolute;
+    top: 0;
+    left: ${props => props.theme.spacing};
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .card-title {
+    position: absolute;
+    bottom: 0;
+    right: ${props => props.theme.spacing};
+    color: white;
+  }
+
+  .text-background {
+    background: rgba(0, 0, 0, 0.8);
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-radius: 2px;
+  }
 `
 
-const Card = ({ fluid, category, title }) => (
-  <Styled>
-    <Img
-      fluid={fluid}
-      style={{ height: '200px', borderRadius: '2px 2px 0 0' }}
-    />
-    <div className="card-text">
-      {/* <h5 className="card-category">{category}</h5> */}
-      <h3 className="card-title">{title}</h3>
-    </div>
-  </Styled>
-)
-
-export default Card
+export default function Card({ category, title, fluid }) {
+  return (
+    <Styled>
+      <Img fluid={fluid} style={{ height: '200px', borderRadius: '2px' }} />
+      <h6 className="card-category text-background">{category}</h6>
+      <h2 className="card-title text-background">{title}</h2>
+    </Styled>
+  )
+}

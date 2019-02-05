@@ -14,7 +14,7 @@ const Styled = styled.div`
   }
 `
 
-const PostCredit = ({ author, datePublished, authorImage }) => (
+const Avatar = ({ author, datePublished, authorImage }) => (
   <Styled>
     <Img
       fixed={authorImage}
@@ -32,4 +32,4 @@ const PostCredit = ({ author, datePublished, authorImage }) => (
   </Styled>
 )
 
-export default PostCredit
+export default Avatar

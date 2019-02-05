@@ -6,11 +6,9 @@ import instagram from '../images/instagram.svg'
 import facebook from '../images/facebook.svg'
 import messenger from '../images/messenger.svg'
 import twitter from '../images/twitter.svg'
-import like from '../images/like.svg'
 
 const Styled = styled.div`
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
   margin-bottom: ${props => props.theme.spacing};
 `
@@ -32,7 +30,6 @@ const Button = styled.button`
   border: none;
   border-radius: 2px;
   margin-right: ${props => props.theme.spacing};
-  /* margin-bottom: ${props => props.theme.spacing}; */
   transition: all 0.2s ease-in-out;
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -62,16 +59,9 @@ const Social = () => (
         <Icon src={messenger} />
       </Link>
     </Button>
-
     <Button style={{ background: '#1da1f2' }}>
       <Link to="#">
         <Icon src={twitter} />
-      </Link>
-    </Button>
-
-    <Button style={{ background: 'red' }}>
-      <Link to="#">
-        <Icon src={like} />
       </Link>
     </Button>
   </Styled>

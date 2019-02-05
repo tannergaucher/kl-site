@@ -2,17 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import Nav from './Nav'
 import BottomBar from './BottomBar'
 
 import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
  @import url('https://fonts.googleapis.com/css?family=Karla:400,700|Noto+Serif');
-
   *, *:before, *:after {
 	box-sizing: border-box;
 }
+
 
   html {
     min-height: 100vh;
@@ -31,7 +30,6 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
   }
 
-
   h1,h2,h3,h4,h5,h6 {
     letter-spacing: -0.03rem;
   }
@@ -41,7 +39,6 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyles />
-      {/* <Nav /> */}
       {children}
       <BottomBar />
     </>

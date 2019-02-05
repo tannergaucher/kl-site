@@ -1,6 +1,6 @@
 const theme = {
   spacing: '1em',
-  radius: '4px',
+  radius: '2px',
 }
 
 export default theme

@@ -4,11 +4,9 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
-import FullCard from '../components/FullCard'
+import Card from '../components/Card'
 import Link from '../components/styles/Link'
 import Instagram from '../components/Instagram'
-
-import mail from '../images/mail.svg'
 
 const Styled = styled.div`
   display: grid;
@@ -63,15 +61,13 @@ const Styled = styled.div`
 const Button = styled.button`
   padding: ${props => props.theme.spacing};
   background: black;
-  border-top: 2px solid black;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-left: none;
+  border: 3px solid black;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   color: white;
   letter-spacing: 0.03em;
   font-size: 12px;
+  transition: 0.2s;
 `
 
 const Form = styled.form`
@@ -79,13 +75,20 @@ const Form = styled.form`
   justify-content: center;
 
   input {
-    border: 2.5px solid black;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border: 3px solid black;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
     border-right: none;
     background: rgba(0, 0, 0, 0.1);
     color: white;
     font-size: 16px;
+    padding-left: 0.3em;
+    transition: 0.2s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      transition: 0.2s;
+    }
   }
 `
 
@@ -104,7 +107,7 @@ const IndexPage = ({ data }) => {
 
           <div className="hero-text">
             <h1 style={{ fontSize: '50px' }}>{heroHeader}</h1>
-            <h3>{heroSubheader}</h3>
+            <h3 style={{ fontWeight: 'lighter' }}>{heroSubheader}</h3>
             <Form>
               <input />
               <Button>Newsletter</Button>
@@ -119,7 +122,7 @@ const IndexPage = ({ data }) => {
               const { title, category, cardImage, slug } = post.node
               return (
                 <Link to={`/guide/${slug}`} key={slug}>
-                  <FullCard
+                  <Card
                     title={title}
                     category={category}
                     fluid={cardImage.fluid}

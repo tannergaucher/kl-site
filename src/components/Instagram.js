@@ -45,7 +45,7 @@ const Instagram = () => (
     render={data => {
       const { edges } = data.allInstaNode
       return (
-        <Styled>
+        <Styled className="instagram-gallery">
           {edges.map(edge => {
             return (
               <div className="img-wrapper">
