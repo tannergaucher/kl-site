@@ -8,6 +8,8 @@ import PostsList from '../components/PostsList'
 import Instagram from '../components/Instagram'
 import Newsletter from '../components/Newsletter'
 
+import NavLink from '../components/styles/NavLink'
+
 const Styled = styled.div`
   text-align: center;
 
@@ -17,9 +19,20 @@ const Styled = styled.div`
     justify-content: center;
     align-items: center;
   }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      margin-right: ${props => props.theme.spacing};
+    }
+  }
 `
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, pageContext }) => {
+  console.log(pageContext)
   const posts = data.indexPosts.edges
   const images = data.instagramFeed.edges
   const { heroHeader, heroSubheader, newsletterText } = data.homepage
@@ -35,11 +48,26 @@ const IndexPage = ({ data }) => {
         <main>
           <h3>Latest</h3>
           <PostsList posts={posts} />
+
           <h3>More</h3>
+          <div className="more">
+            <NavLink to="#">
+              <h4>Food & Drink</h4>
+            </NavLink>
+            <NavLink to="#">
+              <h4>Entertainment</h4>
+            </NavLink>
+            <NavLink to="#">
+              <h4>Culture</h4>
+            </NavLink>
+          </div>
 
           <h3>Untrip on Instagram</h3>
           <Instagram images={images} />
-          <h3>View more</h3>
+
+          <NavLink to="#">
+            <h3>More Instagram</h3>
+          </NavLink>
 
           <div className="newsletter-footer">
             <div>
@@ -66,7 +94,7 @@ export const query = graphql`
       childImageSharp {
         fluid(
           maxWidth: 1400
-          duotone: { shadow: "#665f52", highlight: "#5f00c9", opacity: 46 }
+          duotone: { shadow: "#407ea1", highlight: "#dc773a" }
           toFormat: PNG
         ) {
           ...GatsbyImageSharpFluid
@@ -74,12 +102,14 @@ export const query = graphql`
       }
     }
 
-    indexPosts: allContentfulPost {
+    indexPosts: allContentfulPost(limit: 9) {
       edges {
         node {
           title
           slug
-          category
+          postSubcategory {
+            subcategory
+          }
           cardImage {
             fluid(maxWidth: 800) {
               ...GatsbyContentfulFluid

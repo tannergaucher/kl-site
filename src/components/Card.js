@@ -40,11 +40,11 @@ const Styled = styled.div`
   }
 `
 
-export default function Card({ category, title, fluid }) {
+export default function Card({ subcategory, title, fluid }) {
   return (
     <Styled>
       <Img fluid={fluid} style={{ height: '200px', borderRadius: '2px' }} />
-      <h6 className="card-category text-background">{category}</h6>
+      <h6 className="card-category text-background">{subcategory}</h6>
       <h2 className="card-title text-background">{title}</h2>
     </Styled>
   )

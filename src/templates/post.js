@@ -36,42 +36,35 @@ const Styled = styled.div`
 `
 
 const post = ({ data }) => {
-  console.log(data)
-  const {
-    title,
-    author,
-    category,
-    createdAt,
-    introSentence,
-    featuredImage,
-    authorImage,
-  } = data.contentfulPost
-
-  const { featuredPosts } = data.featured.edges[0].node
+  const { post } = data
+  const { featuredPosts } = data.featuredPosts.edges[0].node
 
   // prettier-ignore
-  const { html } = data.contentfulPost.childContentfulPostArticleTextNode.childMarkdownRemark
+  const { html } = post.childContentfulPostArticleTextNode.childMarkdownRemark
 
   return (
     <Layout>
       <Styled>
         <header>
-          <h4>{category}</h4>
-          <h1>{title}</h1>
+          <h4>{post.postSubcategory.subcategory}</h4>
+          <h1>{post.title} </h1>
+
           <Avatar
-            author={author}
-            authorImage={authorImage.fixed}
-            // TODO Format date function
-            datePublished={createdAt}
+            author={post.postAuthor.name}
+            authorImage={post.postAuthor.avatarImage.fluid}
+            datePublished={post.createdAt}
           />
-          <p>{introSentence}</p>
+
+          <p>{post.introSentence}</p>
           <Social className="social" />
         </header>
+
         <Img
           className="featured-image"
-          fluid={featuredImage.fluid}
+          fluid={post.featuredImage.fluid}
           style={{ height: '300px' }}
         />
+
         <article>
           <div
             dangerouslySetInnerHTML={{
@@ -82,28 +75,25 @@ const post = ({ data }) => {
           <Social />
           <div className="post-links">
             <h3>Similar</h3>
-            {featuredPosts.map(featuredPost => (
+            {/* {similarPosts.map(similarPost => (
               <div style={{ marginBottom: '1em' }}>
-                <Link
-                  to={`/guide/${featuredPost.slug}`}
-                  key={featuredPost.slug}
-                >
+                <Link to={`/guide/${similarPost.slug}`} key={similarPost.slug}>
                   <Card
-                    title={featuredPost.title}
-                    category={featuredPost.category}
-                    fluid={featuredPost.cardImage.fluid}
+                    title={similarPost.title}
+                    category={similarPost.category}
+                    fluid={similarPost.cardImage.fluid}
                   />
                 </Link>
               </div>
-            ))}
-            <h3>Popular</h3>
+            ))} */}
+            <h3>Featured (will change to popular with more content added)</h3>
             {featuredPosts.map(featuredPost => (
               <div style={{ marginBottom: '1em' }}>
                 <Link to={`/guide/${featuredPost.slug}`}>
                   <Card
                     title={featuredPost.title}
-                    category={featuredPost.category}
-                    fluid={featuredPost.cardImage.fluid}
+                    subcategory={featuredPost.postSubcategory.subcategory}
+                    fluid={featuredPost.featuredImage.fluid}
                   />
                 </Link>
               </div>
@@ -119,13 +109,21 @@ export default post
 
 export const pageQuery = graphql`
   query($slug: String!) {
-    contentfulPost(slug: { eq: $slug }) {
+    post: contentfulPost(slug: { eq: $slug }) {
       title
-      author
-      category
+      postSubcategory {
+        subcategory
+      }
+      postAuthor {
+        name
+        avatarImage {
+          fluid {
+            ...GatsbyContentfulFluid
+          }
+        }
+      }
       introSentence
-      tags
-      createdAt
+      createdAt(formatString: "MM.DD.YYYY")
       childContentfulPostArticleTextNode {
         childMarkdownRemark {
           html
@@ -136,21 +134,19 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid
         }
       }
-      authorImage {
-        fixed(width: 50) {
-          ...GatsbyContentfulFixed
-        }
-      }
     }
-    featured: allContentfulFeatured {
+
+    featuredPosts: allContentfulFeaturedPosts {
       edges {
         node {
           featuredPosts {
             title
-            category
             slug
-            cardImage {
-              fluid {
+            postSubcategory {
+              subcategory
+            }
+            featuredImage {
+              fluid(maxWidth: 800) {
                 ...GatsbyContentfulFluid
               }
             }

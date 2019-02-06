@@ -23,7 +23,7 @@ const NavLinks = () => {
       <Link to="/">
         <h5>Untrip</h5>
       </Link>
-      <Link to="/fooddrink">
+      <Link to="/food-drink">
         <h5>Food & Drink</h5>
       </Link>
       <Link to="/entertainment">

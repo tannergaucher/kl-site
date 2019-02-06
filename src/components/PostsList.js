@@ -24,10 +24,14 @@ const PostsList = ({ posts }) => {
     <Styled>
       <div className="posts-list">
         {posts.map(post => {
-          const { title, category, cardImage, slug } = post.node
+          const { title, postSubcategory, cardImage, slug } = post.node
           return (
-            <Link to={`/guide/${slug}`} key={slug}>
-              <Card title={title} category={category} fluid={cardImage.fluid} />
+            <Link to={`/${slug}`} key={slug}>
+              <Card
+                title={title}
+                subcategory={postSubcategory.subcategory}
+                fluid={cardImage.fluid}
+              />
             </Link>
           )
         })}

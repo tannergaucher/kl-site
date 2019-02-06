@@ -23,6 +23,10 @@ const Styled = styled.header`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   @media (max-width: 750px) {
@@ -32,7 +36,7 @@ const Styled = styled.header`
   }
 `
 
-const Hero = ({ fluid, header, subHeader, newsletter = false }) => {
+const Hero = ({ fluid, header, subHeader, newsletter }) => {
   return (
     <Styled>
       <Img className-="hero-img" fluid={fluid} style={{ height: '60vh' }} />

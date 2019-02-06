@@ -21,17 +21,13 @@ const Styled = styled.nav`
 `
 
 const NavLink = styled(Link)`
-  color: grey;
+  color: white;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 0.2s;
-  &:hover {
-    color: white;
-    transition: 0.2s;
-  }
+
   h6 {
     font-weight: lighter;
     font-size: 10px;

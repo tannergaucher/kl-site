@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import Link from './styles/Link'
 
 const Styled = styled.div`
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: black;
   color: white;
   height: 60px;
