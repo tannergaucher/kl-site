@@ -37,8 +37,6 @@ const Styled = styled.div`
 
 const post = ({ data }) => {
   const { post } = data
-  const { featuredPosts } = data.featuredPosts.edges[0].node
-
   // prettier-ignore
   const { html } = post.childContentfulPostArticleTextNode.childMarkdownRemark
 
@@ -46,13 +44,15 @@ const post = ({ data }) => {
     <Layout>
       <Styled>
         <header>
-          <h4>{post.postSubcategory.subcategory}</h4>
+          <h4>{post.category.category}</h4>
+          {post.tags.map(tag => (
+            <h6 key={post.id}>{tag.tag}</h6>
+          ))}
           <h1>{post.title} </h1>
-
           <Avatar
-            author={post.postAuthor.name}
-            authorImage={post.postAuthor.avatarImage.fluid}
-            datePublished={post.createdAt}
+            author={post.author.name}
+            authorImage={post.author.avatarImage.fixed}
+            datePosted={post.datePosted}
           />
 
           <p>{post.introSentence}</p>
@@ -73,32 +73,6 @@ const post = ({ data }) => {
           />
           <h3>Share the article</h3>
           <Social />
-          <div className="post-links">
-            <h3>Similar</h3>
-            {/* {similarPosts.map(similarPost => (
-              <div style={{ marginBottom: '1em' }}>
-                <Link to={`/guide/${similarPost.slug}`} key={similarPost.slug}>
-                  <Card
-                    title={similarPost.title}
-                    category={similarPost.category}
-                    fluid={similarPost.cardImage.fluid}
-                  />
-                </Link>
-              </div>
-            ))} */}
-            <h3>Featured (will change to popular with more content added)</h3>
-            {featuredPosts.map(featuredPost => (
-              <div style={{ marginBottom: '1em' }}>
-                <Link to={`/guide/${featuredPost.slug}`}>
-                  <Card
-                    title={featuredPost.title}
-                    subcategory={featuredPost.postSubcategory.subcategory}
-                    fluid={featuredPost.featuredImage.fluid}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
         </article>
       </Styled>
     </Layout>
@@ -110,20 +84,26 @@ export default post
 export const pageQuery = graphql`
   query($slug: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
+      id
       title
-      postSubcategory {
-        subcategory
+      category {
+        category
       }
-      postAuthor {
+      tags {
+        tag
+      }
+      author {
         name
         avatarImage {
-          fluid {
-            ...GatsbyContentfulFluid
+          fixed(width: 30) {
+            ...GatsbyContentfulFixed
           }
         }
       }
       introSentence
-      createdAt(formatString: "MM.DD.YYYY")
+
+      datePosted(formatString: "MM.DD.YYYY")
+
       childContentfulPostArticleTextNode {
         childMarkdownRemark {
           html
@@ -132,25 +112,6 @@ export const pageQuery = graphql`
       featuredImage {
         fluid(maxWidth: 1400) {
           ...GatsbyContentfulFluid
-        }
-      }
-    }
-
-    featuredPosts: allContentfulFeaturedPosts {
-      edges {
-        node {
-          featuredPosts {
-            title
-            slug
-            postSubcategory {
-              subcategory
-            }
-            featuredImage {
-              fluid(maxWidth: 800) {
-                ...GatsbyContentfulFluid
-              }
-            }
-          }
         }
       }
     }

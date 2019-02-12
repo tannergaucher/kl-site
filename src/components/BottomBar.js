@@ -1,62 +1,68 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
+import Link from '../components/styles/Link'
+
+import { kebabCase } from 'lodash'
 
 const Styled = styled.nav`
-  height: 47.5px;
+  height: 60px;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 1;
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.15);
+
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  background: black;
-  color: white;
+  justify-content: space-around;
+  h6 {
+    margin: 0;
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
 
   @media (min-width: 750px) {
     display: none;
   }
 `
 
-const NavLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  h6 {
-    font-weight: lighter;
-    font-size: 10px;
-    letter-spacing: -3%;
-  }
-`
-
-class BottomBar extends React.Component {
-  render() {
-    return (
-      <Styled>
-        <div className="nav-icon">
-          <NavLink to="/">
-            <h6>Untrip</h6>
-          </NavLink>
-        </div>
-        <div className="nav-icon">
-          <NavLink to="/guide">
-            <h6>Guide</h6>
-          </NavLink>
-        </div>
-        <div className="nav-icon">
-          <NavLink to="/favorites">
-            <h6>Favorites</h6>
-          </NavLink>
-        </div>
-      </Styled>
-    )
-  }
-}
-
+const BottomBar = () => (
+  <StaticQuery
+    query={graphql`
+      query CategoriesQuery {
+        allContentfulCategory {
+          edges {
+            node {
+              category
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const { edges } = data.allContentfulCategory
+      return (
+        <Styled>
+          <Link to="/all">
+            <h6>All</h6>
+          </Link>
+          {edges.map(edge => {
+            const { category } = edge.node
+            return (
+              <Link to={kebabCase(category)} key={category}>
+                <h6>{category}</h6>
+              </Link>
+            )
+          })}
+          <Link to="/my-untrip">
+            <h6>My Untrip</h6>
+          </Link>
+        </Styled>
+      )
+    }}
+  />
+)
 export default BottomBar

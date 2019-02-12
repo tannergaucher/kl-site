@@ -24,7 +24,10 @@ const Instagram = ({ images }) => (
   <Styled className>
     {images.map(image => {
       return (
-        <a href={`https://www.instagram.com/p/${image.node.id}`}>
+        <a
+          href={`https://www.instagram.com/p/${image.node.id}`}
+          key={image.node.id}
+        >
           <Img
             fluid={image.node.localFile.childImageSharp.fluid}
             key={image.node.timestamp}

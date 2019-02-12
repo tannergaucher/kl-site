@@ -6,18 +6,14 @@ import Layout from '../components/layout'
 
 const Styled = styled.div``
 
-const Index = ({ data }) => {
+const myUntrip = ({ data }) => {
   return (
     <Layout>
-      <Styled>
-        index
-        {/* <SIGNUP/> */}
-        {/* <SIGNIN/> */}
-      </Styled>
+      <Styled>my untrip</Styled>
     </Layout>
   )
 }
 
-export default Index
+export default myUntrip
 
 // export const query = graphql``

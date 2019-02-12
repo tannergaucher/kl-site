@@ -14,7 +14,7 @@ const Styled = styled.div`
   }
 `
 
-const Avatar = ({ author, datePublished, authorImage }) => (
+const Avatar = ({ author, datePosted, authorImage }) => (
   <Styled>
     <Img
       fixed={authorImage}
@@ -27,7 +27,7 @@ const Avatar = ({ author, datePublished, authorImage }) => (
     />
     <div className="post-info">
       <h6>{author}</h6>
-      <h6>{datePublished}</h6>
+      <h6>{datePosted}</h6>
     </div>
   </Styled>
 )
