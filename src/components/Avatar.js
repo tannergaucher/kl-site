@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 const Styled = styled.div`
   display: flex;
   margin-bottom: ${props => props.theme.spacing};
-  .post-info {
+  .info {
     h6 {
       margin: 0;
       font-weight: lighter;
@@ -14,10 +14,10 @@ const Styled = styled.div`
   }
 `
 
-const Avatar = ({ author, datePosted, authorImage }) => (
+const Avatar = ({ fixed, author, date }) => (
   <Styled>
     <Img
-      fixed={authorImage}
+      fixed={fixed}
       style={{
         height: '30px',
         width: '30px',
@@ -25,9 +25,9 @@ const Avatar = ({ author, datePosted, authorImage }) => (
         marginRight: '.5em',
       }}
     />
-    <div className="post-info">
+    <div className="info">
       <h6>{author}</h6>
-      <h6>{datePosted}</h6>
+      <h6>{date}</h6>
     </div>
   </Styled>
 )

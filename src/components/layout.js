@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import theme from '../theme'
 
@@ -37,19 +36,18 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-const Layout = ({ children }) => (
+const layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyles />
-      <TopBar />
       {children}
       <BottomBar />
     </>
   </ThemeProvider>
 )
 
-Layout.propTypes = {
+layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default layout

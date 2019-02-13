@@ -24,77 +24,30 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `)
       .then(result => {
-        const posts = result.data.posts.edges
-        const categories = result.data.categories.edges
+        const { data } = result
+        const posts = data.posts.edges
+        const categories = data.categories.edges
 
-        posts.forEach(post => {
+        posts.map(edge => {
+          const { slug } = edge.node
           createPage({
-            path: `/post/${post.node.slug}`,
+            path: `/${slug}`,
             component: path.resolve(`./src/templates/post.js`),
             context: {
-              slug: post.node.slug,
+              slug,
             },
           })
         })
 
-        categories.forEach(node => {
-          const { category } = node.node
-          // activity template page
+        categories.map(edge => {
+          const { category } = edge.node
           createPage({
-            path: `${_.kebabCase(category)}/activity`,
-            component: path.resolve(`./src/templates/activity.js`),
+            path: `/${_.kebabCase(category)}`,
+            component: path.resolve(`./src/templates/category.js`),
             context: {
-              category: category,
-              all: false,
+              category,
             },
           })
-
-          //tags template page
-          createPage({
-            path: `${_.kebabCase(category)}/tags`,
-            component: path.resolve(`./src/templates/tags.js`),
-            context: {
-              category: category,
-              all: false,
-            },
-          })
-
-          //places template page
-          createPage({
-            path: `${_.kebabCase(category)}/places`,
-            component: path.resolve(`./src/templates/places.js`),
-            context: {
-              category: category,
-              all: false,
-            },
-          })
-
-          //map template page
-          createPage({
-            path: `${_.kebabCase(category)}/map`,
-            component: path.resolve(`./src/templates/map.js`),
-            context: {
-              category: category,
-              all: false,
-            },
-          })
-        })
-
-        // create ALL pages
-        createPage({
-          path: `/all/activity`,
-          component: path.resolve(`./src/templates/activity.js`),
-          context: {
-            all: true,
-          },
-        })
-
-        createPage({
-          path: `/all/tags`,
-          component: path.resolve(`./src/templates/tags.js`),
-          context: {
-            all: true,
-          },
         })
 
         resolve()
